@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#box{
+			width: 200px;
+			height: 200px;
+			margin:200px auto;
+			position: relative;
+			-webkit-transform-style:preserve-3d;
+			-webkit-transition:1s all ease;
+			-webkit-transform:perspective(400px) rotateX(0deg);
+		}
+		#box .z{
+			width: 200px;
+			height: 200px;
+			line-height: 200px;
+			text-align: center;
+			font-size: 30px;
+			background: pink;
+			position: absolute;
+			left: 0;
+			top: 0;
+			-webkit-transform:translateZ(1px);
+		}
+		#box .f{
+			width: 200px;
+			height: 200px;
+			line-height: 200px;
+			text-align: center;
+			font-size: 30px;
+			background: aqua;
+			position: absolute;
+			left: 0;
+			top: 0;
+			-webkit-transform:translateZ(-1px) scale(1,-1);
+		}
+		#box:active{
+			-webkit-transform:perspective(400px) rotateX(180deg);
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="z">正面</div>
+		<div class="f">反面</div>
+	</div>
+</body>
+</html>

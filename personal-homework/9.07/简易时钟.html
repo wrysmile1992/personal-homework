@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.clock{
+			width: 300px;
+			height: 300px;
+			border-radius: 50%;
+			position: relative;
+			margin:200px auto;
+			border:4px solid pink;
+		}
+		.clock .h{
+			width: 12px;
+			height: 80px;
+			background: #812AE6;
+			position: absolute;
+			border-radius: 50% 50% 0 0;
+			left:50%;
+			top:70px;
+			-webkit-transform-origin:bottom;
+		}
+		.clock .m{
+			width: 8px;
+			height: 110px;
+			background: yellow;
+			position: absolute;
+			border-radius: 50% 50% 0 0;
+			left:50%;
+			top:40px;
+			-webkit-transform-origin:bottom;
+		}
+		.clock .s{
+			width: 5px;
+			height: 130px;
+			background: red;
+			position: absolute;
+			border-radius: 50% 50% 0 0;
+			left: 50%;
+			top:20px;
+			-webkit-transform-origin:bottom;
+		}
+		.clock .cat{
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			position: absolute;
+			left:49%;
+			top:48%;
+			background:-webkit-radial-gradient(#fff,orange);
+		}
+		.clock span{
+			width: 3px;
+			height: 5px;
+			position: absolute;
+			left:50%;
+			top:0;
+			background: aqua;
+			-webkit-transform-origin:center 150px;
+		}
+		.clock span.big_scale{
+			width: 5px;
+			height: 8px;
+			position: absolute;
+			left:50%;
+			background: red;
+		}
+		.clock span.big_scale em{
+			font-style: normal;
+			width:15px;
+			height:15px;
+			position: absolute;
+			left:50%;
+			top:10px;
+			margin-left: -10px;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oClock = document.querySelector('.clock');
+			var oH = document.querySelector('.h');
+			var oM = document.querySelector('.m');
+			var oS = document.querySelector('.s');
+			//刻度
+			var N = 60;
+			for (var i = 0; i < N; i++) {
+				var oSpan = document.createElement('span');
+				oSpan.style.WebkitTransform = 'rotate('+i*6+'deg)';
+				if (i%5==0) {
+					oSpan.className = 'big_scale';
+					oSpan.innerHTML = '<em>'+(i/5||12)+'</em>';
+					var oEm = oSpan.children[0];
+					oEm.style.WebkitTransform = 'rotate('+(-i*6)+'deg)';
+				}
+				oClock.appendChild(oSpan);
+			}
+			// 时分秒
+			function clock(){
+				var oDate = new Date();
+				var oHour = oDate.getHours();
+				var oMinute = oDate.getMinutes();
+				var oSecond = oDate.getSeconds();
+				var oHd = oHour*30;
+				var oMd = oMinute*6;
+				var oSd = oSecond*6;
+				oH.style.WebkitTransform = 'rotate('+oHd+'deg)';
+				oM.style.WebkitTransform = 'rotate('+oMd+'deg)';
+				oS.style.WebkitTransform = 'rotate('+oSd+'deg)';
+			}
+			clock();
+			setInterval(clock,1000);
+		};
+	</script>
+</head>
+<body>
+	<div class="clock">
+		<span></span>
+		<div class="h"></div>
+		<div class="m"></div>
+		<div class="s"></div>
+		<div class="cat"></div>
+	</div>
+</body>
+</html>
